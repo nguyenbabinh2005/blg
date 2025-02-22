@@ -1,5 +1,6 @@
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.LinkedList;
 public class Main{
   static class node{
     int data;
@@ -16,8 +17,19 @@ public class Main{
       moi.next = dau;
       dau = moi;
     }
+    public void gop(danhsach y){
+        if(dau == null){
+            dau = y.dau;
+            return;
+        }
+        node hientai = dau;
+        while(hientai.next != null){
+            hientai = hientai.next;
+        }
+        hientai.next = y.dau;
+    }
     public void dich(int k) {
-      if (dau == null || k == 0) return;
+      if (dau == null) return;
       node hientai = dau;
       int length = 1;
       while (hientai.next != null) {
@@ -158,6 +170,11 @@ public class Main{
   }
   public static void main(String[] args){
     danhsach ds = new danhsach();
+    danhsach t = new danhsach();
+    t.dau(5);
+    t.cuoi(6);
+    t.cuoi(99);
+    t.cuoi(56);
     ds.cuoi(7);
     ds.dau(8);
     ds.dau(1);
@@ -182,17 +199,24 @@ public class Main{
     ds.lap();
     ds.in();
     ds.dem();
-    System.out.println("giá trị lớn nhât trong danh sách là: "+ds.max());
-    System.out.println("danh sách sau khi xoá các phần tử ở chỉ số chẵn");
+    System.out.println("gia tri lon nhat trong danh sach la: "+ds.max());
+    System.out.println("danh sach sau khi xoa phan tu o chi so chan");
     ds.xoaphantu();
     ds.in();
     ds.cuoi(19);
     ds.cuoi(20);
     ds.cuoi(11);
+    System.out.println("danh sach chua dich chuyen");
+    ds.in();
     Scanner a = new Scanner(System.in);
     int b = a.nextInt();
-    System.out.print("danh sach sau khi dich phai " + b + " lan");
+    System.out.println("danh sach sau khi dich phai " + b + " lan");
     ds.dich(b);
+    ds.in();
+    System.out.println("danh sach thu 2");
+    t.in();
+    System.out.println("noi 2 danh sach");
+    ds.gop(t);
     ds.in();
   }
 }
